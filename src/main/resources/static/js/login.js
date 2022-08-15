@@ -2,7 +2,6 @@ $(document).ready(function() {
    // on ready
 });
 
-
 async function iniciarSesion() {
   let datos = {};
   datos.email = document.getElementById('txtEmail').value;
