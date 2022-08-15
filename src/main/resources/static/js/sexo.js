@@ -1,7 +1,7 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
     cargarUsuarios();
-  $('#sexo').DataTable();
+  $('#sexos').DataTable();
   actualizarEmailDelUsuario();
 });
 
@@ -19,15 +19,16 @@ async function cargarUsuarios() {
 
 
   let listadoHtml = '';
-  for (let sexo of sexo) {
-    let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + sexo.sex_id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+  for (let sexos of sexo) {
+    let botonGuardar = '<a href="#" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a>';
+    let botonEditar = '<a href="#" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>';
+    let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + sexos.sex_id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
 
-    let usuarioHtml = '<tr><td>'+sexo.sex_id+'</td><td>' + sexo.sex_nombre + '</td><td>'
-                    + botonEliminar + '</td></tr>';
+    let usuarioHtml = '<tr><td>'+sexos.sex_id+'</td><td>' + sexos.sex_nombre + '</td><td>' + botonGuardar + '    ' + botonEditar + '    ' + botonEliminar + '</td></tr>';
     listadoHtml += usuarioHtml;
   }
 
-document.querySelector('#sexo tbody').outerHTML = listadoHtml;
+document.querySelector('#sexos tbody').outerHTML = listadoHtml;
 
 }
 

@@ -20,9 +20,11 @@ async function cargarUsuarios() {
 
   let listadoHtml = '';
   for (let actores of actor) {
+    let botonGuardar = '<a href="#" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a>';
+    let botonEditar = '<a href="#" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>';
     let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + actores.act_id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
 
-    let usuarioHtml = '<tr><td>'+actores.act_id+'</td><td>' + actores.sex_id + '</td><td>' + actores.act_nombre + '</td><td>'+ botonEliminar + '</td></tr>';
+    let usuarioHtml = '<tr><td>'+actores.act_id+'</td><td>' + actores.sex_id + '</td><td>' + actores.act_nombre + '</td><td>' + botonGuardar + '    ' + botonEditar + '    ' + botonEliminar + '</td></tr>';
     listadoHtml += usuarioHtml;
   }
 

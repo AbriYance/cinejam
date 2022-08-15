@@ -1,7 +1,7 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
     cargarUsuarios();
-  $('#actoresPeliculas').DataTable();
+  $('#actorespeliculas').DataTable();
   actualizarEmailDelUsuario();
 });
 
@@ -11,23 +11,24 @@ function actualizarEmailDelUsuario() {
 
 
 async function cargarUsuarios() {
-  const request = await fetch('api/actorPelicula', {
+  const request = await fetch('api/actorpelicula', {
     method: 'GET',
     headers: getHeaders()
   });
-  const actorPelicula = await request.json();
+  const actorpelicula = await request.json();
 
 
   let listadoHtml = '';
-  for (let actoresPeliculas of actorPelicula) {
-    let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + actoresPeliculas.apl_id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+  for (let actorespeliculas of actorpelicula) {
+    let botonGuardar = '<a href="#" class="btn btn-success btn-circle btn-sm"><i class="fas fa-check"></i></a>';
+    let botonEditar = '<a href="#" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>';
+    let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + actorespeliculas.apl_id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
 
-    let usuarioHtml = '<tr><td>'+actoresPeliculas.apl_id+'</td><td>' + actoresPeliculas.act_id + '</td><td>' + actoresPeliculas.pel_id + '</td><td>' + actoresPeliculas.apl_papel + '</td><td>'
-                    + botonEliminar + '</td></tr>';
+    let usuarioHtml = '<tr><td>'+actorespeliculas.apl_id+'</td><td>' + actorespeliculas.act_id + '</td><td>' + actorespeliculas.pel_id + '</td><td>' + actorespeliculas.apl_papel + '</td><td>'+ botonGuardar + '    ' + botonEditar + '    ' + botonEliminar + '</td></tr>';
     listadoHtml += usuarioHtml;
   }
 
-document.querySelector('#actoresPeliculas tbody').outerHTML = listadoHtml;
+document.querySelector('#actorespeliculas tbody').outerHTML = listadoHtml;
 
 }
 
@@ -41,11 +42,11 @@ function getHeaders() {
 
 async function eliminarUsuario(id) {
 
-  if (!confirm('¿Desea eliminar este actor de pelicula?')) {
+  if (!confirm('¿Desea eliminar este actorpelicula?')) {
     return;
   }
 
- const request = await fetch('api/actorPelicula/' + id, {
+ const request = await fetch('api/actorpelicula/' + id, {
     method: 'DELETE',
     headers: getHeaders()
   });

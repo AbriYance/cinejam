@@ -20,13 +20,13 @@ public class Pelicula {
     @Column(name = "pel_id")
     private Integer pel_id;
 
-    @Column(name = "gen_id")
+    @Getter @Setter @Column (name = "gen_id")
     private Integer gen_id;
 
-    @Column(name = "dir_id")
+    @Getter @Setter @Column (name = "dir_id")
     private Integer dir_id;
 
-    @Column(name = "for_id")
+    @Getter @Setter @Column(name = "for_id")
     private Integer for_id;
 
     @Getter @Setter @Column(name = "pel_nombre")
